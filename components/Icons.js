@@ -153,3 +153,8 @@ export const DocIcon = () => <svg><use href="#i-doc" /></svg>;
 
 // 카테고리 아이콘 — id 로 골라 쓴다
 export const Icon3D = ({ id }) => <svg><use href={`#${id}`} /></svg>;
+
+// 메인 하단 신뢰 3칸용. 시안 index_1.html 에 있던 것과 같은 선 아이콘이다.
+export const IconShield = (p) => <Ln d={['M12 3.5 4.5 6.2v5.6c0 4.6 3.2 8.8 7.5 9.7 4.3-.9 7.5-5.1 7.5-9.7V6.2z', 'm9 12 2.2 2.2L15.2 10']} {...p} />;
+export const IconCal = (p) => <Ln d={['M4.5 6.5h15v13h-15z', 'M4.5 10.5h15', 'M8.5 4v4', 'M15.5 4v4']} {...p} />;
+export const IconNo = (p) => <Ln d={['M12 3.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17Z', 'm6.5 6.5 11 11']} {...p} />;
