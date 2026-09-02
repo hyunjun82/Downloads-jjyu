@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# 크롤 예산 절약 : 색인할 필요 없는 경로
+Disallow: /api/
+
+Sitemap: https://downloads.jjyu.co.kr/sitemap.xml

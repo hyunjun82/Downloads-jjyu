@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>다운로드 — 프로그램부터 계약서 양식까지, 검사된 원본만</title>
+<meta name="description" content="유틸리티·프로그램 다운로드와 근로계약서·청구서 등 서식 인쇄를 한 곳에서. 모든 파일 백신 3종 검사, 광고 버튼 없는 원본 링크.">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+/* ============ tokens ============ */
+:root{
+  --bg:#ffffff; --bg-sub:#f6f7f9; --bg-elev:#ffffff; --bg-deep:#0e1013;
+  --line:#e5e8ed; --line-soft:#eff1f5;
+  --tx:#12141a; --tx-2:#565e6d; --tx-3:#8b929e;
+  --brand:#2f5bff; --brand-ink:#1d40cc; --brand-soft:#eef2ff;
+  --safe:#00a870; --safe-soft:#e6f7f1;
+  --hot:#ff5a3c; --hot-soft:#fff0ec;
+  --doc:#7c4dff; --doc-soft:#f2edff;
+  --radius:16px; --radius-sm:11px;
+  --shadow:0 1px 2px rgba(16,24,40,.04),0 10px 30px -14px rgba(16,24,40,.16);
+  --shadow-lg:0 2px 4px rgba(16,24,40,.05),0 24px 56px -22px rgba(16,24,40,.3);
+  --maxw:1200px;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0d0f13; --bg-sub:#14171d; --bg-elev:#171a21; --bg-deep:#080a0d;
+    --line:#252932; --line-soft:#1d212a;
+    --tx:#eff1f5; --tx-2:#a4acba; --tx-3:#79818f;
+    --brand:#7f9dff; --brand-ink:#a4bcff; --brand-soft:#151d33;
+    --safe:#3ddc9a; --safe-soft:#0f2a21;
+    --hot:#ff8065; --hot-soft:#2b1712;
+    --doc:#b39bff; --doc-soft:#1d1733;
+    --shadow:0 1px 2px rgba(0,0,0,.5),0 10px 30px -14px rgba(0,0,0,.7);
+    --shadow-lg:0 2px 4px rgba(0,0,0,.5),0 24px 56px -22px rgba(0,0,0,.85);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0d0f13; --bg-sub:#14171d; --bg-elev:#171a21; --bg-deep:#080a0d;
+  --line:#252932; --line-soft:#1d212a;
+  --tx:#eff1f5; --tx-2:#a4acba; --tx-3:#79818f;
+  --brand:#7f9dff; --brand-ink:#a4bcff; --brand-soft:#151d33;
+  --safe:#3ddc9a; --safe-soft:#0f2a21;
+  --hot:#ff8065; --hot-soft:#2b1712;
+  --doc:#b39bff; --doc-soft:#1d1733;
+  --shadow:0 1px 2px rgba(0,0,0,.5),0 10px 30px -14px rgba(0,0,0,.7);
+  --shadow-lg:0 2px 4px rgba(0,0,0,.5),0 24px 56px -22px rgba(0,0,0,.85);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:88px}
+body{
+  margin:0;background:var(--bg);color:var(--tx);
+  font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Segoe UI","Malgun Gothic",sans-serif;
+  font-size:16px;line-height:1.6;letter-spacing:-.015em;-webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.ico{width:18px;height:18px;flex:none;stroke-linecap:round;stroke-linejoin:round}
+
+/* ============ header ============ */
+.hdr{position:sticky;top:0;z-index:80;background:color-mix(in srgb,var(--bg) 82%,transparent);
+  backdrop-filter:saturate(180%) blur(14px);border-bottom:1px solid var(--line)}
+.hdr-in{display:flex;align-items:center;gap:14px;height:62px}
+.logo{display:flex;align-items:center;gap:9px;font-weight:800;font-size:18.5px;letter-spacing:-.04em;flex:none}
+.logo i{width:24px;height:24px;border-radius:8px;flex:none;
+  background:linear-gradient(140deg,var(--brand),#8b5cf6 90%);display:grid;place-items:center}
+.logo i::after{content:"";width:9px;height:9px;border:2.4px solid #fff;border-top:0;border-right:0;
+  transform:rotate(-45deg) translate(1px,-1px)}
+.qs{flex:1;max-width:420px;position:relative}
+.qs input{width:100%;height:38px;border:1px solid var(--line);background:var(--bg-sub);border-radius:10px;
+  padding:0 62px 0 36px;font:inherit;font-size:14px;color:var(--tx);outline:none;letter-spacing:-.01em}
+.qs input:focus{border-color:var(--brand);background:var(--bg);box-shadow:0 0 0 3px var(--brand-soft)}
+.qs>svg{position:absolute;left:11px;top:10px;opacity:.42}
+.qs kbd{position:absolute;right:9px;top:9px;font:inherit;font-size:11px;font-weight:700;color:var(--tx-3);
+  border:1px solid var(--line);border-radius:5px;padding:1px 6px;background:var(--bg)}
+.nav{display:flex;gap:2px;margin-left:auto;align-items:center}
+.nav a{padding:8px 12px;border-radius:9px;font-size:14.5px;color:var(--tx-2);font-weight:600}
+.nav a:hover{background:var(--bg-sub);color:var(--tx)}
+.nav a.mark{color:var(--doc)}
+.theme{width:36px;height:36px;border-radius:9px;border:1px solid var(--line);background:var(--bg-sub);
+  display:grid;place-items:center;color:var(--tx-2);flex:none;margin-left:6px}
+.theme:hover{color:var(--tx);border-color:var(--tx-3)}
+@media(max-width:960px){.nav a{display:none}.qs{max-width:none}}
+
+/* ============ hero ============ */
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line);
+  background:
+    radial-gradient(760px 380px at 12% -10%,color-mix(in srgb,var(--brand) 18%,transparent),transparent 70%),
+    radial-gradient(620px 340px at 92% 0%,color-mix(in srgb,var(--doc) 16%,transparent),transparent 70%),
+    var(--bg)}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(var(--line-soft) 1px,transparent 1px),linear-gradient(90deg,var(--line-soft) 1px,transparent 1px);
+  background-size:56px 56px;mask-image:radial-gradient(700px 340px at 50% 0%,#000,transparent 78%);opacity:.75}
+.hero-in{position:relative;z-index:1;padding:66px 0 46px;text-align:center}
+@media(max-width:700px){.hero-in{padding:44px 0 34px}}
+.badge{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700;color:var(--safe);
+  background:var(--safe-soft);border-radius:999px;padding:6px 14px;margin:0 0 20px;letter-spacing:-.01em}
+.badge b{color:var(--tx);font-weight:700}
+h1{font-size:52px;line-height:1.18;margin:0 0 16px;letter-spacing:-.045em;font-weight:800}
+h1 em{font-style:normal;background:linear-gradient(100deg,var(--brand),#8b5cf6);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+@media(max-width:840px){h1{font-size:38px}}
+@media(max-width:520px){h1{font-size:30px;letter-spacing:-.04em}}
+.lead{font-size:17.5px;color:var(--tx-2);margin:0 auto 30px;max-width:620px;line-height:1.6}
+@media(max-width:520px){.lead{font-size:15.5px}}
+
+.bigsearch{max-width:660px;margin:0 auto;position:relative}
+.bigsearch input{width:100%;height:60px;border:1px solid var(--line);background:var(--bg-elev);
+  border-radius:15px;padding:0 130px 0 52px;font:inherit;font-size:16.5px;color:var(--tx);outline:none;
+  box-shadow:var(--shadow-lg)}
+.bigsearch input::placeholder{color:var(--tx-3)}
+.bigsearch input:focus{border-color:var(--brand);box-shadow:0 0 0 4px var(--brand-soft),var(--shadow-lg)}
+.bigsearch>svg{position:absolute;left:19px;top:21px;opacity:.45}
+.bigsearch button{position:absolute;right:8px;top:8px;height:44px;padding:0 20px;border:0;border-radius:11px;
+  background:var(--brand);color:#fff;font-weight:700;font-size:15px;letter-spacing:-.02em;transition:.15s}
+.bigsearch button:hover{background:var(--brand-ink)}
+@media(max-width:520px){
+  .bigsearch input{height:54px;font-size:15px;padding:0 16px 0 46px}
+  .bigsearch>svg{top:18px;left:16px}
+  .bigsearch button{display:none}
+}
+.hotwords{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin:18px 0 0;font-size:13.5px}
+.hotwords span{color:var(--tx-3);font-weight:600;padding:5px 0;margin-right:2px}
+.hotwords a{padding:5px 12px;border-radius:999px;border:1px solid var(--line);background:var(--bg-elev);
+  color:var(--tx-2);font-weight:600;transition:.15s}
+.hotwords a:hover{border-color:var(--brand);color:var(--brand);background:var(--brand-soft)}
+
+.stats{display:flex;justify-content:center;gap:0;margin:38px auto 0;max-width:660px;
+  border:1px solid var(--line);border-radius:14px;background:var(--bg-elev);box-shadow:var(--shadow);overflow:hidden}
+.stats div{flex:1;padding:16px 10px;text-align:center;border-left:1px solid var(--line-soft)}
+.stats div:first-child{border-left:0}
+.stats b{display:block;font-size:22px;font-weight:800;letter-spacing:-.04em;line-height:1.2}
+.stats small{font-size:12.5px;color:var(--tx-3);font-weight:600}
+@media(max-width:520px){.stats b{font-size:17px}.stats small{font-size:11.5px}.stats div{padding:13px 6px}}
+
+/* ============ section shell ============ */
+section{padding:56px 0}
+@media(max-width:700px){section{padding:40px 0}}
+.sec-head{display:flex;align-items:flex-end;gap:14px;margin:0 0 22px}
+.sec-head h2{font-size:26px;margin:0;letter-spacing:-.04em;font-weight:800;line-height:1.3}
+@media(max-width:520px){.sec-head h2{font-size:21px}}
+.sec-head p{margin:5px 0 0;font-size:14.5px;color:var(--tx-3)}
+.sec-head .more{margin-left:auto;flex:none;font-size:14px;font-weight:700;color:var(--tx-2);
+  display:flex;align-items:center;gap:4px;padding:7px 12px;border-radius:9px;border:1px solid var(--line)}
+.sec-head .more:hover{color:var(--brand);border-color:var(--brand)}
+
+/* ============ two lanes ============ */
+.lanes{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:800px){.lanes{grid-template-columns:1fr}}
+.lane{display:block;position:relative;overflow:hidden;border:1px solid var(--line);border-radius:var(--radius);
+  padding:26px;background:var(--bg-elev);box-shadow:var(--shadow);transition:.18s}
+.lane:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg);border-color:color-mix(in srgb,var(--brand) 40%,var(--line))}
+.lane::before{content:"";position:absolute;right:-40px;top:-40px;width:170px;height:170px;border-radius:50%;
+  background:var(--brand-soft);opacity:.8}
+.lane.doc::before{background:var(--doc-soft)}
+.lane>*{position:relative}
+.lane-ico{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;color:#fff;
+  background:linear-gradient(140deg,var(--brand),#8b5cf6);margin:0 0 16px}
+.lane.doc .lane-ico{background:linear-gradient(140deg,var(--doc),#e879f9)}
+.lane h3{font-size:20px;margin:0 0 7px;letter-spacing:-.035em;font-weight:800}
+.lane p{margin:0 0 16px;font-size:14.5px;color:var(--tx-2);line-height:1.6}
+.lane ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.lane li a{display:block;font-size:13px;font-weight:600;color:var(--tx-2);padding:6px 11px;
+  border-radius:8px;background:var(--bg-sub);border:1px solid transparent}
+.lane li a:hover{border-color:var(--line);color:var(--tx)}
+.lane-go{margin-top:18px;display:inline-flex;align-items:center;gap:5px;font-size:14.5px;font-weight:700;color:var(--brand)}
+.lane.doc .lane-go{color:var(--doc)}
+
+/* ============ trust strip ============ */
+.trust{background:var(--bg-sub);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:0}
+.trust-in{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+@media(max-width:820px){.trust-in{grid-template-columns:repeat(2,1fr)}}
+.trust-i{padding:22px 22px 22px 0;display:flex;gap:12px;align-items:flex-start;border-left:1px solid var(--line);padding-left:22px}
+.trust-i:first-child{border-left:0;padding-left:0}
+@media(max-width:820px){
+  .trust-i{border-left:0;padding:18px 12px 18px 0}
+  .trust-i:nth-child(2n){padding-left:18px;border-left:1px solid var(--line)}
+}
+.trust-i svg{color:var(--safe);margin-top:2px}
+.trust-i b{display:block;font-size:14.5px;font-weight:700;letter-spacing:-.02em}
+.trust-i span{font-size:13px;color:var(--tx-3);line-height:1.5;display:block;margin-top:2px}
+
+/* ============ bento ============ */
+.bento{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media(max-width:900px){.bento{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.bento{grid-template-columns:1fr}}
+.b-hero{grid-column:span 2;grid-row:span 2;display:flex;flex-direction:column;justify-content:flex-end;
+  position:relative;overflow:hidden;min-height:300px;border-radius:var(--radius);padding:26px;
+  border:1px solid var(--line);color:#fff;
+  background:linear-gradient(150deg,#1b2a6b,#3b1f7a 55%,#0f1530)}
+@media(max-width:900px){.b-hero{grid-column:span 2;min-height:250px}}
+@media(max-width:520px){.b-hero{grid-column:span 1}}
+.b-hero::after{content:"";position:absolute;right:-70px;top:-70px;width:280px;height:280px;border-radius:50%;
+  background:radial-gradient(circle,rgba(124,93,255,.55),transparent 68%)}
+.b-hero>*{position:relative;z-index:1}
+.b-tag{display:inline-flex;align-items:center;gap:6px;align-self:flex-start;font-size:12px;font-weight:700;
+  background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.22);padding:5px 11px;border-radius:999px;
+  backdrop-filter:blur(6px);margin-bottom:auto}
+.b-hero h3{font-size:27px;margin:16px 0 8px;letter-spacing:-.04em;font-weight:800;line-height:1.28}
+.b-hero p{margin:0 0 18px;font-size:14.5px;color:rgba(255,255,255,.78);line-height:1.6}
+.b-hero .btn{display:inline-flex;align-items:center;gap:8px;align-self:flex-start;background:#fff;color:#161a2e;
+  font-weight:700;font-size:15px;padding:12px 20px;border-radius:11px;transition:.15s}
+.b-hero .btn:hover{transform:translateY(-1px)}
+.b-hero .metaline{display:flex;gap:14px;font-size:12.5px;color:rgba(255,255,255,.62);margin-top:14px;flex-wrap:wrap}
+
+.b-card{border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-elev);padding:18px;
+  box-shadow:var(--shadow);transition:.18s;display:flex;flex-direction:column}
+.b-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg);border-color:color-mix(in srgb,var(--brand) 40%,var(--line))}
+.appico{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-weight:800;font-size:17px;
+  color:#fff;letter-spacing:-.04em;margin:0 0 12px;flex:none}
+.b-card h3{font-size:15.5px;margin:0 0 4px;letter-spacing:-.03em;font-weight:700}
+.b-card p{margin:0 0 12px;font-size:13px;color:var(--tx-3);line-height:1.5;flex:1}
+.tagrow{display:flex;flex-wrap:wrap;gap:5px;align-items:center}
+.tag{font-size:11.5px;font-weight:700;padding:3px 8px;border-radius:6px;background:var(--bg-sub);color:var(--tx-3)}
+.tag.free{background:var(--brand-soft);color:var(--brand)}
+.tag.safe{background:var(--safe-soft);color:var(--safe)}
+.tag.hot{background:var(--hot-soft);color:var(--hot)}
+.tag.doc{background:var(--doc-soft);color:var(--doc)}
+
+/* ============ ranking ============ */
+.tabs{display:flex;gap:4px;margin:0 0 16px;border-bottom:1px solid var(--line);overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tabs button{border:0;background:none;padding:11px 15px;font-size:14.5px;font-weight:700;color:var(--tx-3);
+  border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap;letter-spacing:-.02em}
+.tabs button[aria-selected="true"]{color:var(--tx);border-bottom-color:var(--brand)}
+.tabs button:hover{color:var(--tx-2)}
+.rank{display:grid;grid-template-columns:1fr 1fr;gap:0 34px;border:1px solid var(--line);border-radius:var(--radius);
+  background:var(--bg-elev);padding:8px 22px;box-shadow:var(--shadow)}
+@media(max-width:860px){.rank{grid-template-columns:1fr;gap:0}}
+.r-item{display:flex;align-items:center;gap:13px;padding:13px 0;border-bottom:1px solid var(--line-soft)}
+.r-item:nth-child(5),.r-item:last-child{border-bottom:0}
+@media(max-width:860px){.r-item:nth-child(5){border-bottom:1px solid var(--line-soft)}}
+.r-num{width:20px;flex:none;text-align:center;font-size:15px;font-weight:800;color:var(--tx-3);letter-spacing:-.04em}
+.r-item:nth-child(-n+3) .r-num{color:var(--brand)}
+.r-move{width:26px;flex:none;font-size:11px;font-weight:800;color:var(--tx-3);text-align:center;letter-spacing:-.02em}
+.r-move.up{color:var(--hot)}
+.r-move.down{color:#4a8bff}
+.r-body{flex:1;min-width:0}
+.r-body b{display:block;font-size:14.8px;font-weight:700;letter-spacing:-.025em;white-space:nowrap;
+  overflow:hidden;text-overflow:ellipsis}
+.r-body span{font-size:12.5px;color:var(--tx-3);display:flex;gap:7px;flex-wrap:wrap;margin-top:1px}
+.r-dl{flex:none;width:34px;height:34px;border-radius:10px;border:1px solid var(--line);background:var(--bg-sub);
+  display:grid;place-items:center;color:var(--tx-2);transition:.15s}
+.r-item:hover .r-dl{background:var(--brand);border-color:var(--brand);color:#fff}
+
+/* ============ docs ============ */
+.docwrap{background:var(--bg-sub);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.docgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:900px){.docgrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.docgrid{grid-template-columns:1fr}}
+.doccard{border:1px solid var(--line);border-radius:var(--radius-sm);background:var(--bg-elev);padding:17px;
+  transition:.15s;display:flex;gap:13px;align-items:flex-start}
+.doccard:hover{border-color:var(--doc);transform:translateY(-2px);box-shadow:var(--shadow)}
+.doccard>span:last-child,.newitem>span:last-child{display:block;min-width:0;flex:1}
+.docico{width:38px;height:46px;flex:none;border-radius:5px 8px 5px 5px;border:1.5px solid var(--doc);
+  background:var(--doc-soft);position:relative;display:grid;place-items:end center;padding-bottom:5px}
+.docico::before{content:"";position:absolute;right:0;top:0;border-width:0 10px 10px 0;border-style:solid;
+  border-color:transparent var(--bg-elev) transparent transparent}
+.docico b{font-size:9.5px;font-weight:800;color:var(--doc);letter-spacing:-.02em}
+.doccard h3{font-size:14.8px;margin:0 0 4px;letter-spacing:-.03em;font-weight:700;line-height:1.35}
+.doccard p{margin:0 0 9px;font-size:12.5px;color:var(--tx-3);line-height:1.5}
+.docfmt{display:flex;gap:4px;flex-wrap:wrap}
+.docfmt span{font-size:10.5px;font-weight:800;padding:2px 6px;border-radius:5px;border:1px solid var(--line);color:var(--tx-3)}
+
+/* ============ categories ============ */
+.cats{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+@media(max-width:1000px){.cats{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:640px){.cats{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:400px){.cats{grid-template-columns:repeat(2,1fr)}}
+.cat{display:block;border:1px solid var(--line);border-radius:var(--radius-sm);background:var(--bg-elev);padding:17px 13px;
+  text-align:center;transition:.15s}
+.cat:hover{border-color:var(--brand);transform:translateY(-2px);box-shadow:var(--shadow)}
+.cat i{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;margin:0 auto 10px;
+  background:var(--bg-sub);color:var(--tx-2)}
+.cat:hover i{background:var(--brand-soft);color:var(--brand)}
+.cat b{display:block;font-size:13.5px;font-weight:700;letter-spacing:-.03em}
+.cat small{font-size:11.5px;color:var(--tx-3);font-weight:600}
+
+/* ============ new list ============ */
+.newgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:860px){.newgrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.newgrid{grid-template-columns:1fr}}
+.newitem{display:flex;gap:13px;align-items:center;padding:14px;border:1px solid var(--line);
+  border-radius:var(--radius-sm);background:var(--bg-elev);transition:.15s}
+.newitem:hover{border-color:var(--brand);background:var(--bg-elev);transform:translateY(-2px);box-shadow:var(--shadow)}
+.newitem .appico{width:40px;height:40px;margin:0;border-radius:11px;font-size:15px}
+.newitem b{display:block;font-size:14.3px;font-weight:700;letter-spacing:-.025em}
+.newitem span{font-size:12.3px;color:var(--tx-3)}
+
+/* ============ cta ============ */
+.cta{margin:0 auto;border-radius:20px;padding:44px 40px;text-align:center;color:#fff;position:relative;overflow:hidden;
+  background:linear-gradient(140deg,#16204d,#2c1a5e 55%,#0d1128)}
+.cta::after{content:"";position:absolute;left:50%;top:-120px;width:520px;height:340px;transform:translateX(-50%);
+  background:radial-gradient(closest-side,rgba(124,93,255,.5),transparent)}
+.cta>*{position:relative;z-index:1}
+.cta h2{font-size:28px;margin:0 0 10px;letter-spacing:-.04em;font-weight:800}
+@media(max-width:520px){.cta{padding:34px 22px}.cta h2{font-size:22px}}
+.cta p{margin:0 0 22px;color:rgba(255,255,255,.75);font-size:15.5px}
+.cta a{display:inline-flex;align-items:center;gap:8px;background:#fff;color:#161a2e;font-weight:700;
+  font-size:15.5px;padding:13px 24px;border-radius:12px;transition:.15s}
+.cta a:hover{transform:translateY(-1px)}
+
+/* ============ footer ============ */
+footer{border-top:1px solid var(--line);background:var(--bg-sub);padding:40px 0 30px;margin-top:56px}
+.f-in{display:grid;grid-template-columns:1.6fr repeat(3,1fr);gap:28px}
+@media(max-width:800px){.f-in{grid-template-columns:1fr 1fr;gap:24px}}
+.f-in h4{font-size:13px;margin:0 0 12px;color:var(--tx-3);font-weight:700;letter-spacing:0}
+.f-in ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.f-in li a{font-size:13.5px;color:var(--tx-2);font-weight:500}
+.f-in li a:hover{color:var(--brand)}
+.f-brand p{font-size:13.5px;color:var(--tx-3);margin:12px 0 0;line-height:1.65;max-width:300px}
+.f-bot{margin-top:32px;padding-top:20px;border-top:1px solid var(--line);font-size:12.5px;color:var(--tx-3);
+  display:flex;gap:14px;flex-wrap:wrap}
+</style>
+</head>
+<body>
+
+<!-- ============ header ============ -->
+<header class="hdr">
+  <div class="wrap hdr-in">
+    <a class="logo" href="/"><i></i>다운로드</a>
+    <div class="qs">
+      <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <input type="search" placeholder="프로그램·양식 검색" aria-label="검색">
+      <kbd>⌘K</kbd>
+    </div>
+    <nav class="nav">
+      <a href="#lanes">소프트웨어</a>
+      <a href="#docs" class="mark">서식·계약서</a>
+      <a href="#rank">인기 순위</a>
+      <a href="#cats">카테고리</a>
+      <a href="#safety">안전 정책</a>
+    </nav>
+    <button class="theme" id="themeBtn" aria-label="다크 모드 전환">
+      <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 14.5A8.5 8.5 0 019.5 4a8.5 8.5 0 1010.5 10.5z"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- ============ hero ============ -->
+<div class="hero">
+  <div class="wrap hero-in">
+    <p class="badge">
+      <svg class="ico" style="width:14px;height:14px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><path d="M12 3l7 3v6c0 4.4-3 8.2-7 9-4-.8-7-4.6-7-9V6z"/><path d="M9 12.5l2 2 4-4.5"/></svg>
+      오늘 <b>1,284개</b> 파일 백신 3종 검사 완료
+    </p>
+    <h1>프로그램부터 계약서 양식까지<br><em>검사된 원본</em>만 내려받으세요</h1>
+    <p class="lead">가짜 다운로드 버튼도, 설치 강요도 없습니다. 공식 배포처 원본 링크와 바로 인쇄되는 서식 파일을 한 곳에서 찾으세요.</p>
+
+    <form class="bigsearch" onsubmit="return false">
+      <svg class="ico" style="width:21px;height:21px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <input type="search" placeholder="알집, 곰플레이어, 근로계약서 양식…" aria-label="통합 검색">
+      <button type="submit">검색</button>
+    </form>
+
+    <div class="hotwords">
+      <span>인기 검색</span>
+      <a href="#">표준근로계약서</a>
+      <a href="#">알집</a>
+      <a href="#">한글 뷰어</a>
+      <a href="#">거래명세서 양식</a>
+      <a href="#">반디집</a>
+      <a href="#">위임장</a>
+      <a href="#">곰플레이어</a>
+    </div>
+
+    <div class="stats">
+      <div><b>12,480</b><small>등록 파일</small></div>
+      <div><b>3,120</b><small>인쇄용 서식</small></div>
+      <div><b>0건</b><small>악성코드 유출</small></div>
+      <div><b>매일</b><small>버전 자동 갱신</small></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ trust ============ -->
+<div class="trust" id="safety">
+  <div class="wrap"><div class="trust-in">
+    <div class="trust-i">
+      <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 3l7 3v6c0 4.4-3 8.2-7 9-4-.8-7-4.6-7-9V6z"/><path d="M9 12.5l2 2 4-4.5"/></svg>
+      <div><b>백신 3종 교차 검사</b><span>업로드·갱신 시마다 자동 재검사</span></div>
+    </div>
+    <div class="trust-i">
+      <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><path d="M8.5 8.5l7 7M15.5 8.5l-7 7"/></svg>
+      <div><b>가짜 버튼 0개</b><span>다운로드 버튼은 페이지당 하나뿐</span></div>
+    </div>
+    <div class="trust-i">
+      <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 5h16v14H4z"/><path d="M4 9h16"/><path d="M9 14h6"/></svg>
+      <div><b>공식 배포처 원본</b><span>재포장·번들 설치 프로그램 없음</span></div>
+    </div>
+    <div class="trust-i">
+      <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+      <div><b>버전·용량 실시간 표기</b><span>구버전은 별도 보관함에서 제공</span></div>
+    </div>
+  </div></div>
+</div>
+
+<!-- ============ lanes ============ -->
+<section id="lanes"><div class="wrap">
+  <div class="sec-head">
+    <div>
+      <h2>무엇을 찾고 계신가요?</h2>
+      <p>설치해서 쓰는 프로그램과, 열어서 바로 인쇄하는 서식을 나눠 두었습니다.</p>
+    </div>
+  </div>
+  <div class="lanes">
+    <div class="lane">
+      <div class="lane-ico">
+        <svg class="ico" style="width:24px;height:24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 3v12"/><path d="M7.5 10.5L12 15l4.5-4.5"/><path d="M4 19h16"/></svg>
+      </div>
+      <h3>소프트웨어 다운로드</h3>
+      <p>압축·문서·영상·보안까지, Windows와 Mac에서 실제로 설치되는 최신 버전만 정리했습니다.</p>
+      <ul>
+        <li><a href="#">압축·파일관리</a></li>
+        <li><a href="#">문서·오피스</a></li>
+        <li><a href="#">영상·이미지</a></li>
+        <li><a href="#">보안·백신</a></li>
+        <li><a href="#">시스템 유틸</a></li>
+      </ul>
+      <a class="lane-go" href="#rank">프로그램 둘러보기
+        <svg class="ico" style="width:15px;height:15px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12h13"/><path d="M12.5 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+    <div class="lane doc">
+      <div class="lane-ico">
+        <svg class="ico" style="width:24px;height:24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 9V4h10v5"/><path d="M7 18H5a2 2 0 01-2-2v-4a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2h-2"/><path d="M7 15h10v6H7z"/></svg>
+      </div>
+      <h3>서식·계약서 프린트</h3>
+      <p>근로계약서·청구서·위임장 등 실무 서식을 HWP·DOC·PDF로. 브라우저에서 바로 인쇄도 됩니다.</p>
+      <ul>
+        <li><a href="#">근로·인사</a></li>
+        <li><a href="#">거래·세금계산</a></li>
+        <li><a href="#">부동산·임대차</a></li>
+        <li><a href="#">법률·행정</a></li>
+        <li><a href="#">보험·청구</a></li>
+      </ul>
+      <a class="lane-go" href="#docs">서식 둘러보기
+        <svg class="ico" style="width:15px;height:15px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12h13"/><path d="M12.5 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</div></section>
+
+<!-- ============ bento ============ -->
+<section style="padding-top:0"><div class="wrap">
+  <div class="sec-head">
+    <div>
+      <h2>이번 주 주목</h2>
+      <p>편집부가 직접 설치해 보고 고른 파일입니다.</p>
+    </div>
+    <a class="more" href="#">전체 보기
+      <svg class="ico" style="width:14px;height:14px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12h13"/><path d="M12.5 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+
+  <div class="bento">
+    <a class="b-hero" href="#">
+      <span class="b-tag">
+        <svg class="ico" style="width:13px;height:13px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><path d="M12 3l2.7 5.6 6.3.9-4.5 4.3 1 6.2-5.5-3-5.5 3 1-6.2L3 9.5l6.3-.9z"/></svg>
+        이 주의 선택
+      </span>
+      <h3>2026년 표준근로계약서<br>전체 서식 묶음</h3>
+      <p>고용노동부 최신 개정본 기준. 기간제·단시간·연소자·건설일용까지 8종을 한 번에 받아 바로 인쇄하세요.</p>
+      <span class="btn">
+        <svg class="ico" style="width:17px;height:17px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 3v12"/><path d="M7.5 10.5L12 15l4.5-4.5"/><path d="M4 19h16"/></svg>
+        8종 한번에 받기
+      </span>
+      <span class="metaline"><span>HWP · DOCX · PDF</span><span>2.4MB</span><span>이번 주 18,204회</span></span>
+    </a>
+
+    <a class="b-card" href="#">
+      <span class="appico" style="background:linear-gradient(140deg,#2f80ff,#00c2ff)">Z</span>
+      <h3>알집 12</h3>
+      <p>국내 표준 압축 도구. 손상 파일 복구와 대용량 분할 압축 지원.</p>
+      <div class="tagrow"><span class="tag free">무료</span><span class="tag safe">검사 완료</span><span class="tag">Windows</span></div>
+    </a>
+
+    <a class="b-card" href="#">
+      <span class="appico" style="background:linear-gradient(140deg,#ff5a3c,#ff9d3c)">G</span>
+      <h3>곰플레이어</h3>
+      <p>코덱 추가 설치 없이 대부분의 영상 포맷을 그대로 재생.</p>
+      <div class="tagrow"><span class="tag free">무료</span><span class="tag hot">급상승</span><span class="tag">Windows</span></div>
+    </a>
+
+    <a class="b-card" href="#">
+      <span class="appico" style="background:linear-gradient(140deg,#7c4dff,#c159ff)">한</span>
+      <h3>한글 뷰어 2026</h3>
+      <p>HWP·HWPX 문서를 무료로 열람하고 인쇄. 편집은 제외.</p>
+      <div class="tagrow"><span class="tag free">무료</span><span class="tag safe">공식 원본</span><span class="tag">Win · Mac</span></div>
+    </a>
+
+    <a class="b-card" href="#">
+      <span class="appico" style="background:linear-gradient(140deg,#00a870,#5ad19b)">청</span>
+      <h3>거래명세서 양식</h3>
+      <p>합계금액 자동 계산 수식이 들어간 엑셀 서식.</p>
+      <div class="tagrow"><span class="tag doc">서식</span><span class="tag">XLSX · PDF</span></div>
+    </a>
+  </div>
+</div></section>
+
+<!-- ============ ranking ============ -->
+<section id="rank" style="padding-top:0"><div class="wrap">
+  <div class="sec-head">
+    <div>
+      <h2>실시간 다운로드 순위</h2>
+      <p>오늘 06:00 기준 · 1시간마다 갱신</p>
+    </div>
+    <a class="more" href="#">TOP 100
+      <svg class="ico" style="width:14px;height:14px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12h13"/><path d="M12.5 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+
+  <div class="tabs" role="tablist">
+    <button role="tab" aria-selected="true">전체</button>
+    <button role="tab" aria-selected="false">Windows</button>
+    <button role="tab" aria-selected="false">Mac</button>
+    <button role="tab" aria-selected="false">서식·문서</button>
+    <button role="tab" aria-selected="false">모바일</button>
+  </div>
+
+  <div class="rank">
+    <div class="r-item"><span class="r-num">1</span><span class="r-move up">▲2</span>
+      <span class="appico" style="width:34px;height:34px;border-radius:10px;font-size:14px;margin:0;background:linear-gradient(140deg,#2f80ff,#00c2ff)">Z</span>
+      <span class="r-body"><b>알집 12.0.3</b><span><span>무료</span><span>46.8MB</span><span>Windows</span></span></span>
+      <span class="r-dl"><svg class="ico" style="width:16px;height:16px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 4v11"/><path d="M8 11.5l4 4 4-4"/><path d="M5 20h14"/></svg></span>
+    </div>
+    <div class="r-item"><span class="r-num">6</span><span class="r-move down">▼1</span>
+      <span class="appico" style="width:34px;height:34px;border-radius:10px;font-size:14px;margin:0;background:linear-gradient(140deg,#111827,#4b5563)">7</span>
+      <span class="r-body"><b>7-Zip 24.09</b><span><span>무료</span><span>1.5MB</span><span>Windows</span></span></span>
+      <span class="r-dl"><svg class="ico" style="width:16px;height:16px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 4v11"/><path d="M8 11.5l4 4 4-4"/><path d="M5 20h14"/></svg></span>
+    </div>
+    <div class="r-item"><span class="r-num">2</span><span class="r-move up">▲5</span>
+      <span class="appico" style="width:34px;height:34px;border-radius:10px;font-size:14px;margin:0;background:linear-gradient(140deg,#7c4dff,#c159ff)">계</span>
+      <span class="r-body"><b>표준근로계약서 (2026 개정)</b><span><span>서식</span><span>HWP·PDF</span><span>인쇄 지원</span></span></span>
+      <span class="r-dl"><svg class="ico" style="width:16px;height:16px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 4v11"/><path d="M8 11.5l4 4 4-4"/><path d="M5 20h14"/></svg></span>
+    </div>
+    <div class="r-item"><span class="r-num">7</span><span class="r-move">–</span>
+      <span class="appico" style="width:34px;height:34px;border-radius:10px;font-size:14px;margin:0;background:linear-gradient(140deg,#00a870,#5ad19b)">명</span>
+      <span class="r-body"><b>거래명세서 양식 (수식 포함)</b><span><span>서식</span><span>XLSX</span><span>자동 합계</span></span></span>
+      <span class="r-dl"><svg class="ico" style="width:16px;height:16px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 4v11"/><path d="M8 11.5l4 4 4-4"/><path d="M5 20h14"/></svg></span>
+    </div>
+    <div class="r-item"><span class="r-num">3</span><span class="r-move down">▼1</span>
+      <span class="appico" style="width:34px;height:34px;border-radius:10px;font-size:14px;margin:0;background:linear-gradient(140deg,#7c4dff,#c159ff)">한</span>
+      <span class="r-body"><b>한글 뷰어 2026</b><span><span>무료</span><span>228MB</span><span>Win · Mac</span></span></span>
+      <span class="r-dl"><svg class="ico" style="width:16px;height:16px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 4v11"/><path d="M8 11.5l4 4 4-4"/><path d="M5 20h14"/></svg></span>
+    </div>
+    <div class="r-item"><span class="r-num">8</span><span class="r-move up">▲3</span>
+      <span class="appico" style="width:34px;height:34px;border-radius:10px;font-size:14px;margin:0;background:linear-gradient(140deg,#0f8a4d,#34d399)">V</span>
+      <span class="r-body"><b>V3 Lite</b><span><span>무료</span><span>92MB</span><span>Windows</span></span></span>
+      <span class="r-dl"><svg class="ico" style="width:16px;height:16px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 4v11"/><path d="M8 11.5l4 4 4-4"/><path d="M5 20h14"/></svg></span>
+    </div>
+    <div class="r-item"><span class="r-num">4</span><span class="r-move up">▲1</span>
+      <span class="appico" style="width:34px;height:34px;border-radius:10px;font-size:14px;margin:0;background:linear-gradient(140deg,#ff5a3c,#ff9d3c)">G</span>
+      <span class="r-body"><b>곰플레이어 2.3</b><span><span>무료</span><span>38.2MB</span><span>Windows</span></span></span>
+      <span class="r-dl"><svg class="ico" style="width:16px;height:16px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 4v11"/><path d="M8 11.5l4 4 4-4"/><path d="M5 20h14"/></svg></span>
+    </div>
+    <div class="r-item"><span class="r-num">9</span><span class="r-move down">▼2</span>
+      <span class="appico" style="width:34px;height:34px;border-radius:10px;font-size:14px;margin:0;background:linear-gradient(140deg,#e11d48,#fb7185)">P</span>
+      <span class="r-body"><b>PDF24 Creator</b><span><span>무료</span><span>15.6MB</span><span>Windows</span></span></span>
+      <span class="r-dl"><svg class="ico" style="width:16px;height:16px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 4v11"/><path d="M8 11.5l4 4 4-4"/><path d="M5 20h14"/></svg></span>
+    </div>
+    <div class="r-item"><span class="r-num">5</span><span class="r-move">–</span>
+      <span class="appico" style="width:34px;height:34px;border-radius:10px;font-size:14px;margin:0;background:linear-gradient(140deg,#1d4ed8,#60a5fa)">반</span>
+      <span class="r-body"><b>반디집 7.3</b><span><span>무료</span><span>10.4MB</span><span>Windows</span></span></span>
+      <span class="r-dl"><svg class="ico" style="width:16px;height:16px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 4v11"/><path d="M8 11.5l4 4 4-4"/><path d="M5 20h14"/></svg></span>
+    </div>
+    <div class="r-item"><span class="r-num">10</span><span class="r-move up">▲4</span>
+      <span class="appico" style="width:34px;height:34px;border-radius:10px;font-size:14px;margin:0;background:linear-gradient(140deg,#0891b2,#22d3ee)">위</span>
+      <span class="r-body"><b>위임장 양식 (인감용)</b><span><span>서식</span><span>HWP·DOC</span><span>인쇄 지원</span></span></span>
+      <span class="r-dl"><svg class="ico" style="width:16px;height:16px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 4v11"/><path d="M8 11.5l4 4 4-4"/><path d="M5 20h14"/></svg></span>
+    </div>
+  </div>
+</div></section>
+
+<!-- ============ docs ============ -->
+<div class="docwrap" id="docs"><section><div class="wrap">
+  <div class="sec-head">
+    <div>
+      <h2>바로 인쇄되는 서식</h2>
+      <p>회원가입 없이 내려받고, 브라우저에서 그대로 인쇄할 수 있습니다.</p>
+    </div>
+    <a class="more" href="#">서식 전체
+      <svg class="ico" style="width:14px;height:14px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12h13"/><path d="M12.5 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+
+  <div class="docgrid">
+    <a class="doccard" href="#">
+      <span class="docico"><b>HWP</b></span>
+      <span>
+        <h3>표준근로계약서</h3>
+        <p>기간제·단시간 포함 8종. 2026년 개정 반영.</p>
+        <span class="docfmt"><span>HWP</span><span>DOCX</span><span>PDF</span></span>
+      </span>
+    </a>
+    <a class="doccard" href="#">
+      <span class="docico"><b>XLSX</b></span>
+      <span>
+        <h3>거래명세서 · 청구서</h3>
+        <p>공급가·부가세 합계가 자동 계산됩니다.</p>
+        <span class="docfmt"><span>XLSX</span><span>PDF</span></span>
+      </span>
+    </a>
+    <a class="doccard" href="#">
+      <span class="docico"><b>HWP</b></span>
+      <span>
+        <h3>부동산 임대차계약서</h3>
+        <p>주택·상가 표준계약서와 특약 예시문 포함.</p>
+        <span class="docfmt"><span>HWP</span><span>PDF</span></span>
+      </span>
+    </a>
+    <a class="doccard" href="#">
+      <span class="docico"><b>DOC</b></span>
+      <span>
+        <h3>위임장 · 인감증명 위임</h3>
+        <p>관공서 제출용 기본 양식과 작성 예시.</p>
+        <span class="docfmt"><span>DOC</span><span>HWP</span><span>PDF</span></span>
+      </span>
+    </a>
+    <a class="doccard" href="#">
+      <span class="docico"><b>PDF</b></span>
+      <span>
+        <h3>보험 청구서 5종</h3>
+        <p>실손·상해·진단비 청구 서식 모음.</p>
+        <span class="docfmt"><span>PDF</span><span>HWP</span></span>
+      </span>
+    </a>
+    <a class="doccard" href="#">
+      <span class="docico"><b>HWP</b></span>
+      <span>
+        <h3>사직서 · 퇴직 관련</h3>
+        <p>사직서, 경위서, 재직증명서 신청까지.</p>
+        <span class="docfmt"><span>HWP</span><span>DOCX</span></span>
+      </span>
+    </a>
+    <a class="doccard" href="#">
+      <span class="docico"><b>XLSX</b></span>
+      <span>
+        <h3>급여명세서</h3>
+        <p>4대보험 공제 계산식이 포함된 명세서.</p>
+        <span class="docfmt"><span>XLSX</span><span>PDF</span></span>
+      </span>
+    </a>
+    <a class="doccard" href="#">
+      <span class="docico"><b>HWP</b></span>
+      <span>
+        <h3>내용증명 · 지급명령</h3>
+        <p>임금체불·대여금 회수용 문안 예시 포함.</p>
+        <span class="docfmt"><span>HWP</span><span>DOC</span><span>PDF</span></span>
+      </span>
+    </a>
+  </div>
+</div></section></div>
+
+<!-- ============ categories ============ -->
+<section id="cats"><div class="wrap">
+  <div class="sec-head">
+    <div>
+      <h2>카테고리로 찾기</h2>
+      <p>프로그램 9,360개 · 서식 3,120개</p>
+    </div>
+  </div>
+  <div class="cats">
+    <a class="cat" href="#"><i><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16v13H4z"/><path d="M9 4h6v3H9z"/><path d="M11 12h2v3h-2z"/></svg></i><b>압축·파일</b><small>842개</small></a>
+    <a class="cat" href="#"><i><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/><path d="M9 13h6M9 17h6"/></svg></i><b>문서·오피스</b><small>1,204개</small></a>
+    <a class="cat" href="#"><i><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16v14H4z"/><path d="M10 9l5 3-5 3z"/></svg></i><b>영상·음악</b><small>1,530개</small></a>
+    <a class="cat" href="#"><i><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l7 3v6c0 4.4-3 8.2-7 9-4-.8-7-4.6-7-9V6z"/></svg></i><b>보안·백신</b><small>386개</small></a>
+    <a class="cat" href="#"><i><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg></i><b>시스템 유틸</b><small>1,918개</small></a>
+    <a class="cat" href="#"><i><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 3 2.5 15 0 18M12 3c-2.5 3-2.5 15 0 18"/></svg></i><b>브라우저</b><small>124개</small></a>
+    <a class="cat" href="#"><i><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16v12H4z"/><path d="M8 10h8M8 14h5"/></svg></i><b>근로·인사 서식</b><small>612개</small></a>
+    <a class="cat" href="#"><i><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M8 9h8M8 13h8M8 17h4"/></svg></i><b>거래·세금 서식</b><small>708개</small></a>
+    <a class="cat" href="#"><i><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10l9-6 9 6v10H3z"/><path d="M9 20v-6h6v6"/></svg></i><b>부동산 서식</b><small>394개</small></a>
+    <a class="cat" href="#"><i><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18M5 8h14M7 8l-3 6h6zM17 8l-3 6h6z"/></svg></i><b>법률·행정 서식</b><small>486개</small></a>
+    <a class="cat" href="#"><i><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 9V4h10v5"/><path d="M7 18H5a2 2 0 01-2-2v-4a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2h-2"/><path d="M7 15h10v6H7z"/></svg></i><b>프린트 도구</b><small>218개</small></a>
+    <a class="cat" href="#"><i><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l2.7 5.6 6.3.9-4.5 4.3 1 6.2-5.5-3-5.5 3 1-6.2L3 9.5l6.3-.9z"/></svg></i><b>AI 도구</b><small>296개</small></a>
+  </div>
+</div></section>
+
+<!-- ============ new ============ -->
+<section style="padding-top:0"><div class="wrap">
+  <div class="sec-head">
+    <div>
+      <h2>새로 올라온 파일</h2>
+      <p>최근 48시간 등록 · 검사 완료분만 노출</p>
+    </div>
+    <a class="more" href="#">더 보기
+      <svg class="ico" style="width:14px;height:14px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12h13"/><path d="M12.5 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+  <div class="newgrid">
+    <a class="newitem" href="#"><span class="appico" style="background:linear-gradient(140deg,#2f80ff,#00c2ff)">알</span><span><b>알드라이브 5.2</b><span>FTP·클라우드 통합 · 24.1MB</span></span></a>
+    <a class="newitem" href="#"><span class="appico" style="background:linear-gradient(140deg,#7c4dff,#c159ff)">퇴</span><span><b>퇴직금 정산 계산서</b><span>서식 · XLSX · 자동 계산</span></span></a>
+    <a class="newitem" href="#"><span class="appico" style="background:linear-gradient(140deg,#0891b2,#22d3ee)">O</span><span><b>OBS Studio 31</b><span>화면 녹화·방송 · 142MB</span></span></a>
+    <a class="newitem" href="#"><span class="appico" style="background:linear-gradient(140deg,#00a870,#5ad19b)">견</span><span><b>견적서 표준 양식</b><span>서식 · HWP · XLSX</span></span></a>
+    <a class="newitem" href="#"><span class="appico" style="background:linear-gradient(140deg,#e11d48,#fb7185)">E</span><span><b>Everything 1.5</b><span>초고속 파일 검색 · 2.1MB</span></span></a>
+    <a class="newitem" href="#"><span class="appico" style="background:linear-gradient(140deg,#f59e0b,#fbbf24)">차</span><span><b>차량 매매계약서</b><span>서식 · HWP · PDF</span></span></a>
+  </div>
+</div></section>
+
+<!-- ============ cta ============ -->
+<section style="padding-top:0"><div class="wrap">
+  <div class="cta">
+    <h2>찾는 파일이 없나요?</h2>
+    <p>요청하시면 공식 배포처를 확인하고 검사를 마친 뒤 등록해 드립니다. 평균 하루면 충분합니다.</p>
+    <a href="#">파일 등록 요청하기
+      <svg class="ico" style="width:16px;height:16px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12h13"/><path d="M12.5 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+</div></section>
+
+<!-- ============ footer ============ -->
+<footer>
+  <div class="wrap">
+    <div class="f-in">
+      <div class="f-brand">
+        <a class="logo" href="/"><i></i>다운로드</a>
+        <p>공식 배포처 원본과 실무 서식을 검사해 제공합니다. 재포장 설치 파일과 번들 광고를 취급하지 않습니다.</p>
+      </div>
+      <div>
+        <h4>소프트웨어</h4>
+        <ul>
+          <li><a href="#">압축·파일관리</a></li>
+          <li><a href="#">문서·오피스</a></li>
+          <li><a href="#">영상·음악</a></li>
+          <li><a href="#">보안·백신</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>서식·프린트</h4>
+        <ul>
+          <li><a href="#">근로·인사</a></li>
+          <li><a href="#">거래·세금</a></li>
+          <li><a href="#">부동산·임대차</a></li>
+          <li><a href="#">법률·행정</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>안내</h4>
+        <ul>
+          <li><a href="#">검사 기준</a></li>
+          <li><a href="#">파일 등록 요청</a></li>
+          <li><a href="#">오류 신고</a></li>
+          <li><a href="#">이용약관</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="f-bot">
+      <span>© 2026 다운로드</span>
+      <span>서식은 참고용이며 법적 효력은 개별 상황에 따라 달라질 수 있습니다.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// theme toggle
+(function(){
+  var root=document.documentElement, btn=document.getElementById('themeBtn');
+  var saved=null; try{saved=localStorage.getItem('theme')}catch(e){}
+  if(saved) root.setAttribute('data-theme',saved);
+  btn.addEventListener('click',function(){
+    var cur=root.getAttribute('data-theme');
+    if(!cur) cur=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';
+    var next=cur==='dark'?'light':'dark';
+    root.setAttribute('data-theme',next);
+    try{localStorage.setItem('theme',next)}catch(e){}
+  });
+})();
+// tabs
+document.querySelectorAll('.tabs').forEach(function(t){
+  t.addEventListener('click',function(e){
+    var b=e.target.closest('button'); if(!b) return;
+    t.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-selected','false')});
+    b.setAttribute('aria-selected','true');
+  });
+});
+// ⌘K
+addEventListener('keydown',function(e){
+  if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();document.querySelector('.qs input').focus();}
+});
+</script>
+</body>
+</html>

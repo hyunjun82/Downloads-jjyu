@@ -1,0 +1,10 @@
+{
+  // Cloudflare 정적 배포 설정
+  "name": "downloads-jjyu",
+  "compatibility_date": "2026-09-01",
+  "assets": {
+    "directory": "./out",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  }
+}
