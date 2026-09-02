@@ -50,7 +50,31 @@ export function Sprite() {
       <linearGradient id="pGam" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#FBA9E0"/><stop offset="1" stopColor="#A3229E"/></linearGradient>
       <linearGradient id="pAi"  x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#FFC48C"/><stop offset="1" stopColor="#E8631A"/></linearGradient>
       <linearGradient id="pAi2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#FFD9B4"/><stop offset="1" stopColor="#F58A3C"/></linearGradient>
+      <linearGradient id="pWeb" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#8FC4FF"/><stop offset="1" stopColor="#1668D6"/></linearGradient>
+      <linearGradient id="pSec" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#B7A9F6"/><stop offset="1" stopColor="#5B45C4"/></linearGradient>
+      <linearGradient id="pSys" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#8ED3F0"/><stop offset="1" stopColor="#1B7BA8"/></linearGradient>
       </defs>
+
+      <symbol id="i-web" viewBox="0 0 64 64">
+      <ellipse cx="32" cy="55.5" rx="17" ry="3.4" fill="#1668D6" opacity=".16"/>
+      <circle cx="32" cy="30" r="20" fill="url(#pWeb)"/>
+      <path d="M12 30h40" stroke="#fff" strokeWidth="2.4" opacity=".85"/>
+      <path d="M32 10c6 6.5 6 33.5 0 40M32 10c-6 6.5-6 33.5 0 40" stroke="#fff" strokeWidth="2.4" fill="none" opacity=".85"/>
+      <path d="M15 20c5 3 29 3 34 0M15 40c5-3 29-3 34 0" stroke="#fff" strokeWidth="2" fill="none" opacity=".5"/>
+      </symbol>
+
+      <symbol id="i-sec" viewBox="0 0 64 64">
+      <ellipse cx="32" cy="55.5" rx="16" ry="3.4" fill="#5B45C4" opacity=".16"/>
+      <path d="M32 8l18 7v14c0 11.5-7.6 20.8-18 23-10.4-2.2-18-11.5-18-23V15z" fill="url(#pSec)"/>
+      <path d="m23.5 30.5 6 6 11.5-12" stroke="#fff" strokeWidth="3.6" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+      </symbol>
+
+      <symbol id="i-sys" viewBox="0 0 64 64">
+      <ellipse cx="32" cy="55.5" rx="16" ry="3.4" fill="#1B7BA8" opacity=".16"/>
+      <circle cx="28" cy="26" r="14" fill="none" stroke="url(#pSys)" strokeWidth="6"/>
+      <path d="m38.5 36.5 11 11" stroke="url(#pSys)" strokeWidth="7" strokeLinecap="round"/>
+      <circle cx="28" cy="26" r="8" fill="#fff" opacity=".45"/>
+      </symbol>
 
       <symbol id="i-doc" viewBox="0 0 64 64">
       <ellipse cx="32" cy="55.5" rx="17" ry="3.4" fill="#1E5FE0" opacity=".16"/>

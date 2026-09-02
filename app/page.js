@@ -2,6 +2,7 @@ import Link from 'next/link';
 import HomeSearch from '../components/HomeSearch';
 import { Icon3D, IconSearch } from '../components/Icons';
 import { CATEGORIES, FORMS, countByCategory } from '../lib/forms';
+import { SOFTWARE, getSwByCategory } from '../lib/software';
 
 export const metadata = {
   title: '서류 양식·프로그램 무료 다운로드',
@@ -13,13 +14,13 @@ export const metadata = {
 // 대분류. 아직 안 연 것은 건수를 지어내지 않고 "준비 중"으로 둔다.
 // 지난번에 임의로 적은 숫자(유틸 211·비디오 133)가 실제와 달라 그대로 나갈 뻔했다.
 const SECTIONS = [
-  { id: 'i-doc',     name: '서류·양식',     href: '/forms/', bg: 'linear-gradient(160deg,#EDF4FF,#DCE8FD)', fg: '#1E5FE0', ready: true },
-  { id: 'i-tool',    name: '유틸리티',      bg: 'linear-gradient(160deg,#EAF8F6,#D2EFEA)', fg: '#0D8F84' },
-  { id: 'i-media',   name: '비디오·오디오', bg: 'linear-gradient(160deg,#FFF0F3,#FEE0E7)', fg: '#D02E52' },
+  { id: 'i-doc',     name: '서류·양식',     href: '/forms/',           unit: '개 서식',   count: FORMS.length,                     bg: 'linear-gradient(160deg,#EDF4FF,#DCE8FD)', fg: '#1E5FE0' },
+  { id: 'i-tool',    name: '유틸리티',      href: '/software/',        unit: '개 프로그램', count: SOFTWARE.length,                  bg: 'linear-gradient(160deg,#EAF8F6,#D2EFEA)', fg: '#0D8F84' },
+  { id: 'i-media',   name: '비디오·오디오', href: '/software/media/',  unit: '개 프로그램', count: getSwByCategory('media').length,  bg: 'linear-gradient(160deg,#FFF0F3,#FEE0E7)', fg: '#D02E52' },
+  { id: 'i-web',     name: '브라우저',      href: '/software/browser/', unit: '개 프로그램', count: getSwByCategory('browser').length, bg: 'linear-gradient(160deg,#EDF4FF,#DCE8FD)', fg: '#1668D6' },
   { id: 'i-printer', name: '드라이버',      bg: 'linear-gradient(160deg,#ECFBF4,#D8F5E8)', fg: '#0C8F5F' },
   { id: 'i-font',    name: '폰트',          bg: 'linear-gradient(160deg,#FFF7E8,#FDECCF)', fg: '#C1780C' },
   { id: 'i-game',    name: '게임',          bg: 'linear-gradient(160deg,#FEF0FA,#FBDEF3)', fg: '#A3229E' },
-  { id: 'i-ai',      name: 'AI 도구',       bg: 'linear-gradient(160deg,#FFF4EA,#FEE6D2)', fg: '#E8631A' },
 ];
 
 export default function Home() {
@@ -45,9 +46,15 @@ export default function Home() {
         </p>
         <HomeSearch items={index} />
         <div className="qk">
-          {FORMS.slice(0, 5).map((f) => (
+          {FORMS.slice(0, 3).map((f) => (
             <Link key={f.slug} href={`/forms/${f.cat}/${f.slug}/`}>{f.title}</Link>
           ))}
+          {['크롬', '곰플레이어', '알집', '네이버웨일'].map((k) => {
+            const s2 = SOFTWARE.find((x) => x.slug === k);
+            return s2 ? (
+              <Link key={k} href={`/software/${s2.cat}/${s2.slug}/`}>{s2.name}</Link>
+            ) : null;
+          })}
         </div>
       </div>
 
@@ -57,11 +64,11 @@ export default function Home() {
           <div className="sechd"><h2>카테고리별 다운로드</h2></div>
           <div className="cats">
             {SECTIONS.map((s) =>
-              s.ready ? (
+              s.href ? (
                 <Link className="cat" key={s.id} href={s.href}>
                   <span className="ci" style={{ background: s.bg }}><Icon3D id={s.id} /></span>
                   <span className="nm">{s.name}</span>
-                  <span className="ct num" style={{ color: s.fg }}>{FORMS.length}개 서식</span>
+                  <span className="ct num" style={{ color: s.fg }}>{s.count}{s.unit}</span>
                 </Link>
               ) : (
                 <span className="cat" key={s.id} style={{ opacity: 0.55 }}>

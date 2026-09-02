@@ -14,6 +14,10 @@ export const metadata = {
     '법률·근로·부동산 서식과 국내에서 많이 쓰는 프로그램을 한곳에 정리했습니다. 파일은 보관하지 않고 발행 기관과 제작사 페이지로 바로 연결합니다.',
   applicationName: SITE_NAME,
   robots: { index: true, follow: true },
+  // 검색엔진 소유확인. 다음(Daum)은 robots.txt 에, 빙은 public 의 키 파일에 있다.
+  verification: {
+    other: { 'naver-site-verification': '900586bb1f88d69280517e4d421a3d791befdf47' },
+  },
   alternates: { canonical: '/' },
   openGraph: {
     type: 'website',

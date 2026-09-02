@@ -1,4 +1,5 @@
 import { CATEGORIES, FORMS, SITE_URL } from '../lib/forms';
+import { SW_CATEGORIES, SOFTWARE } from '../lib/software';
 
 // 한글 경로는 사이트맵에 반드시 퍼센트 인코딩으로 적는다.
 // 구글 사이트맵 규격이 URL 이스케이프를 요구하고, 한글 그대로 두면 무시되는 경우가 있다.
@@ -19,6 +20,17 @@ export default function sitemap() {
       url: u(`/forms/${f.cat}/${f.slug}/`),
       lastModified: new Date(f.checked),
       changeFrequency: 'monthly',
+      priority: 0.7,
+    })),
+    { url: `${SITE_URL}/software/`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
+    ...SW_CATEGORIES.map((c) => ({
+      url: u(`/software/${c.slug}/`), lastModified: now, changeFrequency: 'weekly', priority: 0.8,
+    })),
+    // 프로그램은 버전이 자주 바뀐다. 서식(monthly)보다 자주 다시 와 달라고 알린다.
+    ...SOFTWARE.map((s2) => ({
+      url: u(`/software/${s2.cat}/${s2.slug}/`),
+      lastModified: now,
+      changeFrequency: 'weekly',
       priority: 0.7,
     })),
   ];

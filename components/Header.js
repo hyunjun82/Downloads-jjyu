@@ -12,9 +12,9 @@ export default function Header() {
         <div style={{ flex: 1 }} />
         <nav className="hdnav">
           <Link href="/forms/">서류·양식</Link>
-          <span style={{ color: '#C3C8D2' }}>유틸리티</span>
+          <Link href="/software/">프로그램</Link>
+          <Link href="/software/browser/">브라우저</Link>
           <span style={{ color: '#C3C8D2' }}>드라이버</span>
-          <span style={{ color: '#C3C8D2' }}>폰트</span>
         </nav>
         <span className="burger" aria-hidden="true"><IconMenu /></span>
       </div>
