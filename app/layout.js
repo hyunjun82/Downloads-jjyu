@@ -54,6 +54,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="ko">
       <head>
+        {/* RSS 자동 발견. 네이버·다음 수집기와 피드 리더가 이 줄을 보고 피드를 찾는다. */}
+        <link rel="alternate" type="application/rss+xml" title="다운로드 인덱스" href="/rss.xml" />
         <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://fundingchoicesmessages.google.com" crossOrigin="anonymous" />

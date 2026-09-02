@@ -7,11 +7,12 @@ Disallow: /api/
 # 내려받기 중간 페이지는 상세 페이지와 내용이 겹친다.
 # 둘 다 색인되면 서로 순위를 갉아먹으므로 여기서 막는다.
 Disallow: /go/
+Disallow: /sw/
 
 Sitemap: https://downloads.jjyu.co.kr/sitemap.xml
 
+# RSS 피드 — 네이버 서치어드바이저 「RSS 제출」에 넣는 주소
+# https://downloads.jjyu.co.kr/rss.xml
+
 # 다음(Daum) 웹마스터도구 소유확인
 #DaumWebMasterTool:4f3211a368f61b4b4466613d9a8cb1c20799cc30b0efeb58f764dd5104e047e1:hQm4jsh/DU2xT0xEsL0zjw==
-
-# 프로그램 내려받기 중간 페이지도 같은 이유로 막는다.
-Disallow: /sw/
