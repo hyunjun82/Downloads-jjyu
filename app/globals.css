@@ -99,7 +99,7 @@ input{font-family:inherit}
   box-shadow:0 6px 22px rgba(17,19,24,.06)}
 .exam .doct{text-align:center;font-size:19px;font-weight:700;letter-spacing:.5em;padding-left:.5em;margin:0 0 26px}
 .exam .r{display:flex;gap:12px;margin-bottom:12px}
-.exam .r .l{width:62px;flex-shrink:0;font-weight:700;letter-spacing:.24em}
+.exam .r .l{width:74px;flex-shrink:0;font-weight:700;letter-spacing:.24em;white-space:nowrap}
 .exam .hd2{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.18em;margin:22px 0 6px}
 .exam ol{margin:0;padding-left:20px}
 .exam li{margin-bottom:6px}
@@ -230,7 +230,7 @@ input{font-family:inherit}
   .art section{margin-bottom:52px}
   .body{padding:48px 0}
   .exam{padding:34px 30px;font-size:14.5px}
-  .exam .r .l{width:70px}
+  .exam .r .l{width:82px}
   .tbl .k{width:120px}
   .it{padding:18px 2px}
   .it .nm{font-size:17px}
@@ -364,4 +364,20 @@ input{font-family:inherit}
 @media (min-width:900px){
   .chips{grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
   .chip{padding:14px 16px;font-size:15px;min-height:66px}
+}
+
+/* ── 내려받기 중간 페이지 ─────────────── */
+.golay{max-width:520px;margin:0 auto}
+.gocard{background:#fff;border:1px solid var(--line2);border-radius:18px;padding:30px 22px 22px;
+  text-align:center;box-shadow:0 10px 30px rgba(20,62,150,.09)}
+.goci{width:76px;height:76px;border-radius:24px;margin:0 auto 14px;
+  background:linear-gradient(160deg,#EDF4FF,#DAE7FD);display:flex;align-items:center;justify-content:center}
+.goci svg{width:54px;height:54px}
+.gocard h1{margin:0 0 10px;font-size:24px;font-weight:900;color:var(--ink);letter-spacing:-.04em;line-height:1.3}
+.golay .ad{margin:40px auto 34px}
+@media (min-width:900px){
+  .golay{max-width:560px}
+  .gocard{padding:38px 30px 26px}
+  .gocard h1{font-size:28px}
+  .golay .ad{height:250px;margin:44px auto 36px}
 }
