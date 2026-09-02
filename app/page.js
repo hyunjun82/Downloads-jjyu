@@ -3,6 +3,7 @@ import HomeSearch from '../components/HomeSearch';
 import { Icon3D, IconSearch, IconDown, IconShield, IconCal, IconNo } from '../components/Icons';
 import { CATEGORIES, FORMS, countByCategory } from '../lib/forms';
 import { SOFTWARE, SW_CATEGORIES, getSwByCategory, getSwBySlug, SW_ICON } from '../lib/software';
+import { DRIVERS } from '../lib/drivers';
 
 export const metadata = {
   title: '서류 양식·프로그램 무료 다운로드',
@@ -18,7 +19,7 @@ const SECTIONS = [
   { id: 'i-tool',    name: '유틸리티',      href: '/software/',         unit: '개 프로그램', n: () => SOFTWARE.length,                  bg: 'linear-gradient(160deg,#EAF8F6,#D2EFEA)', fg: '#0D8F84' },
   { id: 'i-media',   name: '비디오·오디오', href: '/software/media/',   unit: '개 프로그램', n: () => getSwByCategory('media').length,  bg: 'linear-gradient(160deg,#FFF0F3,#FEE0E7)', fg: '#D02E52' },
   { id: 'i-web',     name: '브라우저',      href: '/software/browser/', unit: '개 프로그램', n: () => getSwByCategory('browser').length, bg: 'linear-gradient(160deg,#EDF4FF,#DCE8FD)', fg: '#1668D6' },
-  { id: 'i-printer', name: '드라이버',      bg: 'linear-gradient(160deg,#ECFBF4,#D8F5E8)', fg: '#0C8F5F' },
+  { id: 'i-printer', name: '드라이버',      href: '/drivers/',          unit: '개 모델',    n: () => DRIVERS.length,                   bg: 'linear-gradient(160deg,#ECFBF4,#D8F5E8)', fg: '#0C8F5F' },
   { id: 'i-font',    name: '폰트',          bg: 'linear-gradient(160deg,#FFF7E8,#FDECCF)', fg: '#C1780C' },
   { id: 'i-game',    name: '게임',          bg: 'linear-gradient(160deg,#FEF0FA,#FBDEF3)', fg: '#A3229E' },
 ];

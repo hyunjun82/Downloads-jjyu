@@ -597,3 +597,26 @@ input{font-family:inherit}
 .trust3 b{font-size:14.5px;font-weight:700;color:var(--ink);letter-spacing:-.01em}
 .trust3 span:not(.ti){font-size:13.5px;color:var(--ink3);line-height:1.7}
 @media (min-width:760px){ .trust3{grid-template-columns:repeat(3,1fr);gap:28px} }
+
+/* ── 드라이버 ─────────────────────────────────────
+   드라이버는 받을 파일이 여러 개다. 그래서 「이것부터」를 맨 위에 크게 둔다. */
+.pick{background:linear-gradient(150deg,#F3FBF7,#E7F6EE);border:1px solid #C9E9D8;
+  border-radius:18px;padding:24px 22px;margin:0 0 22px;text-align:center}
+.pick .pl{display:block;font-size:12.5px;font-weight:600;color:#0B7A47;margin-bottom:8px}
+.pick b{display:block;font-size:20px;font-weight:700;color:var(--ink);letter-spacing:-.02em;line-height:1.4}
+.pick .pv{display:block;font-size:13px;color:var(--ink3);margin-top:6px;font-variant-numeric:tabular-nums}
+.pick p{margin:12px 0 18px;font-size:14.5px;line-height:1.75;color:var(--ink2)}
+.pick .dlnote{margin:12px 0 0;font-size:12.5px;color:var(--ink3)}
+
+.models{display:flex;flex-wrap:wrap;gap:7px}
+.model{background:#fff;border:1px solid var(--line2);border-radius:999px;padding:7px 14px;
+  font-size:13.5px;color:var(--ink2);font-weight:500;font-variant-numeric:tabular-nums}
+.model.on{background:var(--brand-s);border-color:var(--brand-b);color:var(--brand);font-weight:700}
+
+.files{display:flex;flex-direction:column;gap:10px}
+.file{border:1px solid var(--line2);border-radius:14px;padding:16px 18px;background:#fff}
+.file.on{border-color:#C9E9D8;background:#F7FCF9}
+.file .fh{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.file .fh b{font-size:15px;font-weight:700;color:var(--ink);letter-spacing:-.01em}
+.file .fm{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12.5px;color:var(--ink3);margin-bottom:8px}
+.file p{margin:0;font-size:14px;line-height:1.7;color:var(--ink2)}

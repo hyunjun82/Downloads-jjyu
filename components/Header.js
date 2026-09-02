@@ -14,7 +14,7 @@ export default function Header() {
           <Link href="/forms/">서류·양식</Link>
           <Link href="/software/">프로그램</Link>
           <Link href="/software/browser/">브라우저</Link>
-          <span style={{ color: '#C3C8D2' }}>드라이버</span>
+          <Link href="/drivers/">드라이버</Link>
         </nav>
         <span className="burger" aria-hidden="true"><IconMenu /></span>
       </div>

@@ -8,6 +8,7 @@ Disallow: /api/
 # 둘 다 색인되면 서로 순위를 갉아먹으므로 여기서 막는다.
 Disallow: /go/
 Disallow: /sw/
+Disallow: /dv/
 
 Sitemap: https://downloads.jjyu.co.kr/sitemap.xml
 

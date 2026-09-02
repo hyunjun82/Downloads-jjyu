@@ -1,5 +1,6 @@
 import { CATEGORIES, FORMS, SITE_URL, SITE_NAME, plain } from '../../lib/forms';
 import { SW_CATEGORIES, SOFTWARE } from '../../lib/software';
+import { DV_CATEGORIES, DRIVERS } from '../../lib/drivers';
 
 // RSS 2.0 피드.
 //
@@ -66,6 +67,24 @@ export function GET() {
       link: u(`/software/${s.cat}/${s.slug}/`),
       cat: c ? c.name : '프로그램',
       date: now,
+      body: body.join('\n\n'),
+    });
+  }
+
+  // 드라이버 — 어느 파일을 받아야 하는지가 본문의 핵심이다.
+  for (const d of DRIVERS) {
+    const c = DV_CATEGORIES.find((x) => x.slug === d.cat);
+    const body = [];
+    body.push(d.summary);
+    body.push(`${d.host} 지원 페이지에 파일이 ${d.files.length}개 있습니다. 처음 설치하신다면 «${d.pickFirst}» 하나면 됩니다. ${d.pickWhy}`);
+    if (d.hostNote) body.push(d.hostNote);
+    body.push('쓰는 모델 — ' + d.alsoFits.join(', '));
+    body.push(...d.files.map((f) => `${f.name} (${f.ver} · ${f.size} · ${f.date}) — ${f.when}`));
+    items.push({
+      title: `${d.title} 다운로드 — 어느 파일을 받아야 하나`,
+      link: u(`/drivers/${d.cat}/${d.slug}/`),
+      cat: c ? c.name : '드라이버',
+      date: new Date(d.checked),
       body: body.join('\n\n'),
     });
   }
