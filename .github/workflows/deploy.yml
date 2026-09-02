@@ -1,0 +1,43 @@
+name: 배포
+
+# Cloudflare 빌드 시간을 쓰지 않는다.
+# 무료 플랜은 월 3,000분인데 사이트가 여러 개면 금방 찬다.
+# 여기서 빌드까지 끝내고 결과물(out/)만 wrangler 로 올리면 Cloudflare 빌드 시간은 0분이다.
+# GitHub Actions 는 공개 저장소 무제한, 비공개도 월 2,000분 무료다.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: 의존성 설치
+        run: npm ci --no-audit --no-fund
+
+      - name: 정적 사이트 빌드
+        run: npm run build
+
+      - name: Cloudflare 에 업로드
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: deploy
