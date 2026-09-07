@@ -33,6 +33,10 @@ function normAns(s) {
     .replace(/\(\s*(그렇다|아니다|아니에요|맞다|틀리다|O|X)\s*\)/gi, '')
     .replace(/^[①-⑳]\s*/, '')
     .replace(/^\d+\s*[.)]\s*/, '')
+    // 퀴즈벨은 보기 번호를 "2번 5%" 처럼 한글로 붙인다. 안 벗기면 표기 차이가
+    // 매번 [오답의심]으로 잡혀 헛알림이 된다 (2026-09-07 kbpay 실측).
+    // 단 정답 자체가 "2번"인 문제(몇 번 출구 등)가 있으므로 벗긴 뒤가 비면 원본을 쓴다.
+    .replace(/^(\d{1,2}\s*번[\s.)]*)(?=.)/, '')
     .replace(/[○◯]/g, 'O').replace(/[×✕]/g, 'X')
     .replace(/[\s.,'"`·]/g, '')
     .toUpperCase();
@@ -50,10 +54,10 @@ function sim(a, b) {
 const MAP = {
   auction: ['auction'], bitbunny: ['bitbunny', 'bitbunny-ox'], bitbunny_ox: ['bitbunny-ox'],
   cashwalk: ['cashwalk'], cashdoc: ['cashdoc'], climate: ['climate-action'],
-  doctornow: ['doctornow', 'mydoctor'], hanaonecue: ['hana-onq'], hanalife: ['hana-onq'],
+  doctornow: ['doctornow', 'mydoctor'], hanaonecue: ['hana-onq'], hanalife: ['hana-life'],
   hpoint: ['hpoint'], kakaobank: ['kakaobank-ox'], kakaobank_ai: ['kakaobank'],
   kakaopay: ['kakaopay'], kbank: ['kbank'], kbpay: ['kbpay'],
-  kbstar: ['kb-star'], kbstar_hist: ['kb-star'], monimo_eng: ['monimo'], monimo_school: ['monimo'],
+  kbstar: ['kb-star'], kbstar_hist: ['kb-star'], monimo_eng: ['monimo-eng'], monimo_school: ['monimo'],
   nhallone: ['nh-allone'], okcashbag: ['ok-cashbag'], shinhan: ['shinhan-sol'],
   toss: ['toss-lucky'], buzzvil: ['buzzvil'], yoit: ['yoit'], moneywalk: ['moneywalk'],
   naverpay: ['naverpay'], yes24: ['yes24'], adapter: ['adapter'], fallcent: ['fallcent'],

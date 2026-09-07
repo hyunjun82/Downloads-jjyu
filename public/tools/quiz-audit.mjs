@@ -45,6 +45,12 @@ const RULES = {
   'fallcent':      {                                  warn: [[20,1]] },  // 13/14
   'yes24':         {                                  warn: [[12,1]] },  // 12/14
   'cashdoc':       {                                  warn: [[12,1]] },  // 10/14
+  // 2026-09-06~07 신설 카드. 이력이 이틀뿐이라 확정(miss) 기준을 잡을 근거가 없다.
+  // 우선 주의(warn)만 걸어 "비어 있다"는 사실이 눈에 보이게 한다 — 알림은 울리지 않는다.
+  // 관측된 발행 시각: kakaobank-ox 16:40·09:12 / hana-life 00:17 / monimo-eng 09:12
+  'kakaobank-ox':  {                                  warn: [[18,1]] },
+  'hana-life':     {                                  warn: [[12,1]] },
+  'monimo-eng':    {                                  warn: [[12,1]] },
   // 불규칙 — 판정 기준이 없다. 검사 안 함: kakaopay(11/14) ok-cashbag(9/14) nh-allone(10/14) buzzvil(2/14) naverpay
 };
 
