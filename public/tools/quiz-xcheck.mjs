@@ -115,9 +115,17 @@ async function readOurs() {
 const MATCH = 0.55;
 (async () => {
   const [ext, ours] = await Promise.all([readExternal(), readOurs()]);
+  // ⚠️ 기준선을 못 읽었다는 건 "이상 없음"이 아니라 "확인 못 함"이다.
+  // 예전에는 여기서 exit(0) 으로 조용히 끝나서, 감시 작업이 "✅ 정상" 한 줄만 보고했다.
+  // 2026-09-09 실측: 토막스가 Cloudflare 403 으로 온종일 막혔는데도 초록불이 켜졌고,
+  // 그날 kakaobank-ox · hana-life · bitbunny-ox 가 통째로 비어 있는 걸 아무도 못 잡았다.
+  // 감시가 눈을 감았으면 그 사실 자체가 알림이어야 한다 → exit(1).
   if (!ext.ok || ext.items.length === 0) {
-    console.log('[외부대조] 기준선 접속 실패 또는 오늘 자 없음 — 이번 회차 건너뜀');
-    process.exit(0);
+    console.log('⚠️ [외부대조 불가] 기준선(quiz.epostphone.kr)을 읽지 못했습니다.');
+    console.log('   → 이번 회차는 "이상 없음"이 아니라 "확인 못 함"입니다.');
+    console.log('   → 기준선이 오래 막히면 그 소스에만 의존하는 퀴즈가 조용히 빕니다.');
+    console.log(`   ${ext.ok ? '접속은 됐으나 오늘 자 항목이 0건' : '접속 실패(차단·다운 의심)'}`);
+    process.exit(1);
   }
   const missing = [], wrong = [];
   for (const e of ext.items) {
