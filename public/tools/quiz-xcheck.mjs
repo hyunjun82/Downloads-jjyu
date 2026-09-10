@@ -1,6 +1,11 @@
 /**
  * 외부 기준선 대조 감시
- *   quiz.epostphone.kr 의 "오늘 자" 정답을 읽어 quiz.jjyu.co.kr 과 문항 단위로 맞춰본다.
+ *   외부 사이트의 "오늘 자" 정답을 읽어 quiz.jjyu.co.kr 과 문항 단위로 맞춰본다.
+ *
+ *   기준선은 두 곳이다. 1순위 토막스(quiz.epostphone.kr), 막히면 2순위 앱테크.
+ *   2026-09-09~10 실측: 토막스가 Cloudflare 403 으로 이틀 내리 막혔다(UA·경로 무관).
+ *   기준선이 하나뿐이면 그게 막히는 날 감시도 같이 눈을 감는다 — 정확히 그 이틀 동안
+ *   감시는 아무 말도 하지 않았다. 그래서 예비 기준선을 둔다.
  *     [누락]   저쪽에 있는데 우리에 없음      → 자동 발행 후보
  *     [오답]   양쪽에 있는데 정답 값이 다름   → 자동 수정 금지, 알림만
  *   기존 RULES 표 기반 누락검사·중복검사를 대체한다.
@@ -67,6 +72,69 @@ function extKey(fileKey) {
   return m ? m[1] : '';
 }
 
+/* ── 예비 기준선: 앱테크 ─────────────────────────────────────────
+ * 서버 렌더링 HTML 이라 한 번의 요청으로 전부 읽힌다. 앵커 id 가 우리 슬러그와
+ * 거의 1:1 이라 매핑 사고가 적다.
+ * ⚠️ 카드마다 "지난 정답"(9/9, 9/8 …) 블록이 붙어 있다. 그대로 훑으면 어제 정답을
+ *    오늘 것으로 읽는다 — 반드시 그 앞까지만 자르고 첫 Q/정답 쌍만 취한다.
+ */
+const APPTECH = 'https://apptech.spacexai.workers.dev/';
+const APPTECH_MAP = {
+  'quiz-kakaopay': 'kakaopay',
+  'quiz-kakaobank-emoji': 'kakaobank',
+  'quiz-kakaobank-ox': 'kakaobank-ox',
+  'quiz-kb-star': 'kb-star',
+  'quiz-kb-history': 'kb-star',
+  'quiz-shinhan-attendance': 'shinhan-sol',
+  'quiz-shinhan-sol': 'shinhan-sol',
+  'quiz-shinhan-pay': 'shinhan-sol',
+  'quiz-hana-soccer': 'hana-onq',
+  'quiz-hana-ox': 'hana-life',
+  'quiz-kbank': 'kbank',
+  'quiz-nh-allone': 'nh-allone',
+  'quiz-hpoint': 'hpoint',
+  'quiz-bitbunny-quiz': 'bitbunny',
+  'quiz-bitbunny-ox': 'bitbunny-ox',
+  'quiz-doctornow': 'doctornow',
+  'quiz-mydoctor': 'mydoctor',
+  'quiz-climate-action': 'climate-action',
+};
+
+async function readApptech() {
+  const html = await get(APPTECH);
+  if (!html) return { ok: false, items: [], name: '앱테크', why: '접속 실패' };
+  const dm = html.match(/(\d{4})년\s*(\d{1,2})월\s*(\d{1,2})일/);
+  if (!dm) return { ok: false, items: [], name: '앱테크', why: '날짜 헤더 없음' };
+  const pageDate = `${dm[1]}-${String(dm[2]).padStart(2, '0')}-${String(dm[3]).padStart(2, '0')}`;
+  if (pageDate !== today) {
+    return { ok: false, items: [], name: '앱테크', why: `페이지 날짜 ${pageDate} ≠ 오늘 ${today}` };
+  }
+  const ids = Object.keys(APPTECH_MAP)
+    .map((id) => ({ id, at: html.indexOf(`id="${id}"`) }))
+    .filter((x) => x.at >= 0)
+    .sort((a, b) => a.at - b.at);
+  const items = [];
+  for (let i = 0; i < ids.length; i += 1) {
+    const end = i + 1 < ids.length ? ids[i + 1].at : html.length;
+    let seg = html.slice(ids[i].at, end);
+    const past = seg.indexOf('지난 정답');
+    if (past > 0) seg = seg.slice(0, past);
+    const qm = seg.match(/>Q\.\s*(?:<!--\s*-->)?\s*([\s\S]*?)<\/p>/);
+    const am = seg.match(/>정답:\s*(?:<!--\s*-->)?\s*([\s\S]*?)<\/p>/);
+    if (!am) continue;
+    const a = strip(am[1]);
+    if (!a || a.length > 100) continue;
+    items.push({
+      key: ids[i].id,
+      q: qm ? strip(qm[1]) : '',
+      a,
+      url: APPTECH + '#' + ids[i].id,
+      slugs: [APPTECH_MAP[ids[i].id]],
+    });
+  }
+  return { ok: true, items, name: '앱테크' };
+}
+
 async function readExternal() {
   const idx = await get(EXT + '/');
   if (!idx) return { ok: false, items: [] };
@@ -114,22 +182,32 @@ async function readOurs() {
 
 const MATCH = 0.55;
 (async () => {
-  const [ext, ours] = await Promise.all([readExternal(), readOurs()]);
-  // ⚠️ 기준선을 못 읽었다는 건 "이상 없음"이 아니라 "확인 못 함"이다.
-  // 예전에는 여기서 exit(0) 으로 조용히 끝나서, 감시 작업이 "✅ 정상" 한 줄만 보고했다.
-  // 2026-09-09 실측: 토막스가 Cloudflare 403 으로 온종일 막혔는데도 초록불이 켜졌고,
-  // 그날 kakaobank-ox · hana-life · bitbunny-ox 가 통째로 비어 있는 걸 아무도 못 잡았다.
-  // 감시가 눈을 감았으면 그 사실 자체가 알림이어야 한다 → exit(1).
+  let [ext, ours] = await Promise.all([readExternal(), readOurs()]);
+  let baseName = '토막스';
+  let fellBack = '';
   if (!ext.ok || ext.items.length === 0) {
-    console.log('⚠️ [외부대조 불가] 기준선(quiz.epostphone.kr)을 읽지 못했습니다.');
-    console.log('   → 이번 회차는 "이상 없음"이 아니라 "확인 못 함"입니다.');
-    console.log('   → 기준선이 오래 막히면 그 소스에만 의존하는 퀴즈가 조용히 빕니다.');
-    console.log(`   ${ext.ok ? '접속은 됐으나 오늘 자 항목이 0건' : '접속 실패(차단·다운 의심)'}`);
-    process.exit(1);
+    // 1순위가 막혔다. 눈을 감는 대신 예비 기준선으로 갈아탄다.
+    const alt = await readApptech();
+    if (alt.ok && alt.items.length) {
+      fellBack = `토막스 ${ext.ok ? '오늘 자 0건' : '접속 실패(차단·다운 의심)'}`;
+      ext = alt;
+      baseName = alt.name;
+    } else {
+      console.log('⚠️ [외부대조 불가] 기준선을 한 곳도 읽지 못했습니다.');
+      console.log(`   · 토막스 : ${ext.ok ? '접속은 됐으나 오늘 자 항목 0건' : '접속 실패(차단·다운 의심)'}`);
+      console.log(`   · 앱테크 : ${alt.why || (alt.ok ? '오늘 자 항목 0건' : '접속 실패')}`);
+      console.log('   → 이번 회차는 "이상 없음"이 아니라 "확인 못 함"입니다.');
+      console.log('   → 기준선이 오래 막히면 그 소스에만 의존하는 퀴즈가 조용히 빕니다.');
+      process.exit(1);
+    }
+  }
+  if (fellBack) {
+    console.log(`⚠️ [기준선 대체] ${fellBack} → 예비 기준선 ${baseName} 으로 대조합니다.`);
+    console.log('   토막스만 다루는 퀴즈(모니모 영어 등)는 이번 회차에서 대조되지 않습니다.');
   }
   const missing = [], wrong = [];
   for (const e of ext.items) {
-    const cands = MAP[extKey(e.key)] || null;
+    const cands = e.slugs || MAP[extKey(e.key)] || null;
     const pool = cands ? ours.filter((o) => cands.includes(o.slug)) : ours;
     // 안전망: 같은 퀴즈 안에 같은 정답이 이미 있으면 수집된 것으로 본다
     if (pool.some((o) => o.a && normAns(o.a) === normAns(e.a))) continue;
@@ -141,7 +219,7 @@ const MATCH = 0.55;
     if (normAns(best.a) !== normAns(e.a))
       wrong.push({ ...e, ourSlug: best.slug, ourN: best.n, ourA: best.a });
   }
-  console.log('[외부대조] ' + today + ' · 기준선 ' + ext.items.length + '건 vs 우리 ' + ours.length + '건');
+  console.log('[외부대조] ' + today + ' · 기준선(' + baseName + ') ' + ext.items.length + '건 vs 우리 ' + ours.length + '건');
   if (!missing.length && !wrong.length) { console.log('✅ 차이 없음'); process.exit(0); }
   if (missing.length) {
     console.log('\n🔴 [누락] ' + missing.length + '건 — 기준선에 있는데 우리에 없음');
