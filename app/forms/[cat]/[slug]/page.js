@@ -253,9 +253,9 @@ export default function FormDetail({ params }) {
                 <span className="ext">{f.ext}</span>
                 {(ex && ex.file) || `${f.title}_표준양식.${f.ext.toLowerCase()}`}
               </div>
-              <a className="dlbtn" href={f.url} target="_blank" rel="noopener nofollow">
+              <Link className="dlbtn" href={`/go/${f.cat}/${f.slug}/`}>
                 <IconDown />{f.title} 다운로드
-              </a>
+              </Link>
               {ex && (
                 <a className="subbtn" href="#chk"><IconEye />제출 전 확인하기</a>
               )}
@@ -265,7 +265,7 @@ export default function FormDetail({ params }) {
                 <div><dt>발행</dt><dd>{f.issuerShort || f.issuer}</dd></div>
               </div>
               <div className="dlnote">
-                파일을 저희가 보관하지 않습니다.<br />{f.issuer} 페이지로 이동합니다.
+                파일을 저희가 보관하지 않습니다.<br />{f.issuer} 원본으로 연결합니다.
               </div>
             </div>
           </div>
