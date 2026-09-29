@@ -100,7 +100,7 @@ export default function FormDetail({ params }) {
         <div className="layout">
           <div className="art">
             <section>
-              <h2>{f.title}은 어떤 서류인가요</h2>
+              <h2>{josa(f.title, '은는')} 어떤 서류인가요</h2>
               {(f.intro || [f.summary]).map((p, i) => (
                 <p key={i}><Rich text={p} /></p>
               ))}
@@ -118,7 +118,7 @@ export default function FormDetail({ params }) {
 
                   {ex.rows.map(([l, v], i) => (
                     <div className="r" key={i}>
-                      <span className="l">{l}</span>
+                      <span className="l"><Rich text={l} /></span>
                       <span className="c"><RichLines text={v} /></span>
                     </div>
                   ))}
@@ -126,7 +126,7 @@ export default function FormDetail({ params }) {
                   {ex.blocks.map((b, i) => (
                     <div key={i}>
                       <div className="hd2">
-                        {b.h}
+                        <Rich text={b.h} />
                         {b.copy && <CopyButton text={b.copy} />}
                       </div>
                       {b.p && b.p.map((t, j) => <div key={j}><Rich text={t} /></div>)}
@@ -150,7 +150,7 @@ export default function FormDetail({ params }) {
 
                 {ex.tips.map(([h, t], i) => (
                   <div key={i}>
-                    <h3>{h}</h3>
+                    <h3><Rich text={h} /></h3>
                     <p><Rich text={t} /></p>
                   </div>
                 ))}
@@ -180,7 +180,7 @@ export default function FormDetail({ params }) {
                 <h2>어디에, 언제 내나요</h2>
                 {ex.submit.map(([h, t], i) => (
                   <div key={i}>
-                    <h3 style={i === 0 ? { marginTop: 0 } : undefined}>{h}</h3>
+                    <h3 style={i === 0 ? { marginTop: 0 } : undefined}><Rich text={h} /></h3>
                     <p><Rich text={t} /></p>
                   </div>
                 ))}
@@ -192,7 +192,7 @@ export default function FormDetail({ params }) {
                 <h2>양식에 들어가는 항목</h2>
                 <div className="tbl">
                   {f.fields.map(([k, v], i) => (
-                    <div key={i}><span className="k">{k}</span><span className="v">{v}</span></div>
+                    <div key={i}><span className="k"><Rich text={k} /></span><span className="v"><Rich text={v} /></span></div>
                   ))}
                 </div>
               </section>
@@ -203,7 +203,7 @@ export default function FormDetail({ params }) {
                 <h2>자주 묻는 질문</h2>
                 {f.faq.map(([q, a], i) => (
                   <div key={i}>
-                    <h3 style={i === 0 ? { marginTop: 0 } : undefined}>{q}</h3>
+                    <h3 style={i === 0 ? { marginTop: 0 } : undefined}><Rich text={q} /></h3>
                     <p><Rich text={a} /></p>
                   </div>
                 ))}

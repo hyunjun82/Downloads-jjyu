@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import Crumb from '../../../components/Crumb';
+import { josa } from '../../../lib/forms';
 import { Icon3D } from '../../../components/Icons';
 import { SW_CATEGORIES, getSwCategory, getSwByCategory, SW_ICON } from '../../../lib/software';
 
@@ -14,7 +15,7 @@ export function generateMetadata({ params }) {
   const list = getSwByCategory(c.slug);
   return {
     title: `${c.name} 프로그램 ${list.length}개`,
-    description: `${c.desc} ${list.map((s) => s.name).join(', ')}를 제작사 공식 배포처로 연결합니다.`,
+    description: `${c.desc} ${josa(list.map((s) => s.name).join(', '), '을를')} 제작사 공식 배포처로 연결합니다.`,
     alternates: { canonical: `/software/${c.slug}/` },
   };
 }

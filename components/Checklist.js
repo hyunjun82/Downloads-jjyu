@@ -37,7 +37,7 @@ export default function Checklist({ id, items }) {
         {items.map((t, i) => (
           <label key={i}>
             <input type="checkbox" checked={ready ? on[i] : false} onChange={() => toggle(i)} />
-            <span>{t}</span>
+            <span>{String(t).replace(/\*\*|\{\{|\}\}/g, '')}</span>
           </label>
         ))}
       </div>

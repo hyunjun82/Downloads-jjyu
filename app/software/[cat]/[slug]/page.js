@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import Crumb from '../../../../components/Crumb';
 import Rich from '../../../../components/Rich';
+import { josa } from '../../../../lib/forms';
 import { Icon3D, IconDown, IconWarn } from '../../../../components/Icons';
 import {
   SOFTWARE, getSw, getSwCategory, getSwBySlug, relatedSw, SW_ICON,
@@ -166,7 +167,7 @@ export default function SwDetail({ params }) {
                 </li>
                 <li>
                   <b>설치 확인</b>
-                  설치가 끝나면 시작 메뉴에서 {s.name}을 찾을 수 있습니다.
+                  설치가 끝나면 시작 메뉴에서 {josa(s.name, '을를')} 찾을 수 있습니다.
                 </li>
               </ol>
               <div className="note">
