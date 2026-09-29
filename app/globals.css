@@ -82,6 +82,8 @@ input{font-family:inherit}
   background:linear-gradient(145deg,#3D7BF0,#1544B0);color:#fff;font-size:16px;font-weight:700;
   letter-spacing:-.03em;box-shadow:0 8px 18px rgba(21,68,176,.32)}
 .dlbtn:hover{color:#fff}
+/* POST 로만 내려주는 기관용 : <button> 이 <a> 와 같은 모양이 되도록 */
+button.dlbtn{width:100%;border:0;cursor:pointer;font-family:inherit}
 .dlbtn svg{width:20px;height:20px}
 .subbtn{display:flex;align-items:center;justify-content:center;gap:7px;height:46px;margin-top:9px;
   border:1px solid var(--line2);border-radius:12px;font-size:14px;font-weight:500;color:var(--ink2)}

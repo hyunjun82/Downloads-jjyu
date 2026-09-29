@@ -47,9 +47,22 @@ export default function FormGo({ params }) {
             {(ex && ex.file) || `${f.title}.${f.ext.toLowerCase()}`}
           </div>
 
-          <a className="dlbtn" href={f.url} rel="nofollow">
-            <IconDown />{f.issuer} 원본 내려받기
-          </a>
+          {f.post ? (
+            // 기관이 파일을 GET 주소가 아니라 POST 로만 내려주는 경우(예: 영업비밀보호센터).
+            // 외부로 폼을 보내면 브라우저가 응답 파일을 그대로 저장하고 이 페이지는 그대로 남는다.
+            <form method="post" action={f.post.action}>
+              {Object.entries(f.post.fields).map(([k, v]) => (
+                <input key={k} type="hidden" name={k} value={v} />
+              ))}
+              <button className="dlbtn" type="submit">
+                <IconDown />{f.issuer} 원본 내려받기
+              </button>
+            </form>
+          ) : (
+            <a className="dlbtn" href={f.url} rel="nofollow">
+              <IconDown />{f.issuer} 원본 내려받기
+            </a>
+          )}
 
           <p className="dlnote" style={{ borderTop: 'none', marginTop: 14, paddingTop: 0 }}>
             파일은 저희가 보관하지 않습니다. {f.issuer} 서버에서 바로 내려받습니다.
