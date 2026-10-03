@@ -47,7 +47,6 @@ export default function FormsHub() {
             </Link>
           ))}
         </div>
-        <div className="ad">광고 영역</div>
       </div>
     </>
   );

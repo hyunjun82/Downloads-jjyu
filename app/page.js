@@ -163,8 +163,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="wrap"><div className="ad">광고 영역</div></div>
-
+      
       {/* 인기 프로그램 */}
       <div className="wrap sec" style={{ paddingTop: 6 }}>
         <div className="sechd"><h2>인기 프로그램</h2><span className="c num">{SOFTWARE.length}건</span></div>
@@ -225,7 +224,6 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="wrap"><div className="ad">광고 영역</div></div>
-    </>
+          </>
   );
 }

@@ -55,7 +55,6 @@ export default function SwCategory({ params }) {
             </Link>
           ))}
         </div>
-        <div className="ad">광고 영역</div>
       </div>
     </>
   );

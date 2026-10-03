@@ -69,7 +69,6 @@ export default function CategoryView({ cat, forms, others, viewers }) {
               </div>
             )}
 
-            <div className="ad">광고 영역</div>
           </div>
 
           <div className="side">

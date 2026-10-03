@@ -210,7 +210,6 @@ export default function FormDetail({ params }) {
               </section>
             )}
 
-            <div className="ad">광고 영역</div>
 
             {rel.length > 0 && (
               <section>

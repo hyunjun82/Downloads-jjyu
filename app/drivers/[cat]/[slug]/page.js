@@ -104,7 +104,6 @@ export default function DriverDetail({ params }) {
               </p>
             </section>
 
-            <div className="ad">광고 영역</div>
 
             {/* 파일 전체 목록 — 실측한 값 그대로. */}
             <section>
@@ -179,7 +178,6 @@ export default function DriverDetail({ params }) {
               프린터 앞면이나 뒷면 스티커에 적힌 모델명을 확인하세요. 목록에 없으면 {d.host} 지원
               페이지에서 그 모델명으로 검색하시면 됩니다.
             </p>
-            <div className="ad">광고 영역</div>
           </aside>
         </div>
       </div>

@@ -180,7 +180,6 @@ export default function SwDetail({ params }) {
               </div>
             </section>
 
-            <div className="ad">광고 영역</div>
 
             <section>
               <h2 className="h2">장점과 단점</h2>
@@ -270,7 +269,6 @@ export default function SwDetail({ params }) {
             <p className="note2">
               모두 제작사 공식 배포처로 연결합니다. 파일을 보관하거나 다시 포장하지 않습니다.
             </p>
-            <div className="ad">광고 영역</div>
           </aside>
         </div>
       </div>

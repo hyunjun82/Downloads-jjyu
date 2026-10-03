@@ -54,7 +54,6 @@ export default function SwGo({ params }) {
           </p>
         </div>
 
-        <div className="ad">광고 영역</div>
 
         <div className="art" style={{ maxWidth: 640, margin: '0 auto' }}>
           {s.bundle === true && (
